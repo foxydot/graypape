@@ -126,8 +126,7 @@ body {
 ------------------------------------------------------------ */
 
 #header {
-	background: url('../img/bkg-hdr.png') repeat-y top center;
-	min-height: 72px;
+	min-height: 120px;
 	z-index: 99;
 	.wrap {
 		position: relative;
@@ -174,10 +173,10 @@ body {
 	#title-area {
 		#title {
 			a {
-				background: url('../img/logo.png') no-repeat top center;
+				background: url('../img/logo.png') no-repeat left center;
 				display: block;
-				height: 87px;
-				width: 200px;
+				height: 120px;
+				width: 540px;
 				overflow: hidden;
 				padding: 0;
 				text-indent: -9999px;
@@ -204,7 +203,7 @@ body {
 /* Header / Primary / Secondary Navigation
 ------------------------------------------------------------ */
 
-.menu-primary, .menu-secondary {
+.menu-primary, .menu-secondary, .menu {
 	li {
 		display: inline-block;
 		list-style: none outside none;
@@ -214,45 +213,18 @@ body {
 #header .menu {
 }
 
-.menu-primary {
-}
-
-.menu-secondary {
-	clear: both;
-	color: @dkgrey;
-	font-size: 10px;
-	margin: 0 auto;
-	overflow: hidden;
-	width: auto;
-	float: right;
-	li {
-	display: inline-block;
-	list-style-type: none;
-		ul {}
-		}
-	a {color: @dkgrey;
-	display: block;
-	padding: 7px 15px 6px;
-	position: relative;
-	text-decoration: none;}
-}
 .menu-primary li ul,
 #header .menu li ul {
 	width: 240px;
 }
 #nav {
-	.quickgradient(@red);
-	border-top: 1px solid ;
-	border-bottom: 4px solid @white;
+	background: @green;
 	z-index: 50;
-	.drop-shadow(0, 1px, 8px, 0.5); 
 	.wrap:after{.clearfix;}
 	.menu-primary{
-		padding: 0; margin: 0; float:right;
-		a{color: white;font-weight: normal;text-transform:uppercase;padding: 0.5em 1em;display: block;}
-		li {border-left: 1px solid @ltred;
-			border-right: 1px solid ;
-			margin-left:-4px;
+		padding: 0; margin: 0;text-align: center;
+		a{color: white;font-weight: bold;text-transform:uppercase;padding: 0.5em 1em;display: block;}
+		li {margin-left:-4px;
 			li {border: none;}
 		}
 		li.first-child {border-left:none;}
@@ -264,6 +236,27 @@ body {
 	a:hover{text-decoration: none;}
 }
 #nav:after{.clearfix;}
+
+#subnav {
+	background: @ltgrey;
+	z-index: 50;
+	.wrap:after{.clearfix;}
+	.menu-secondary{
+		padding: 0; margin: 0;text-align: right;
+		a{color: @medgrey;font-weight: normal;text-transform:uppercase;padding:0.85em;display: block;font-size: .75em;}
+		li {
+			li {border: none;}
+		}
+		li.first-child {border-left:none;}
+		li:hover, li.current-menu-item, li.current-menu-ancestor {
+		}
+	}
+	.s {margin:0;width:200px;}
+	.searchform {padding: 0.6em;}
+	a:hover{text-decoration: none;}
+}
+#subnav:after{.clearfix;}
+
 
 .menu-primary a,
 .menu-secondary a,
@@ -317,21 +310,8 @@ body {
 	color: @dkgrey;
 }
 
-/* Plus Sign Image */
-.menu li a .sf-sub-indicator,
-.menu li li a .sf-sub-indicator,
-.menu li li li a .sf-sub-indicator {
-	background: url(images/icon-plus.png) no-repeat;
-	height: 16px;
-	position: absolute;
-	right: 8px;
-	text-indent: -9999px;
-	top: 10px;
-	width: 16px;
-}
-
 .ftr-menu {
-	display: inline-block;
+	display: block;
 	ul {padding: 0; margin: 0;
 		li.menu-item {margin-right: 4px;}
 	}
@@ -340,8 +320,9 @@ body {
 ------------------------------------------------------------ */
 
 #inner {
-	margin: 1px auto;
+	margin: 0 auto;
 	padding: 0 0 30px;
+	border-bottom: 4px solid @red;
 }
 #inner:after {
 	.clearfix;
@@ -828,6 +809,7 @@ input.searchsubmit:hover {
 }
 
 #footer-widgets {
+	background: @ltgrey;
 	.widget{
 		float: left;
 		margin-right: 3.8%;
@@ -880,52 +862,11 @@ input.searchsubmit:hover {
 		li{display: block;}
 	}
 }
-.footer-widgets-1 {
-	height: 210px;
-	.one-fourth;
-	.first;
-	float: left;
-	label {
-		text-transform: uppercase;
-	}
-	input[type=text] {
-		width: 200px;
-		border: 1px solid @medgrey;
-		font-size: 16px;
-	}
-}
-
-.footer-widgets-2 {
-	height: 140px;
-	.one-half;
-	float: left;
-}
-
-.footer-widgets-3 {
-	height: 170px;
-	.one-fourth;
-	float: left;
-	p {
-		font-size:0.8em;
-	}
-}
-
-.footer-widgets-4 {
-	height: 85px;
-	.one-half;
-	float: left;
-	.widget-container {
-		float: right;
-		margin-right: 60px;
-		width: 500px;
-	}
-}
 
 /* Footer
 ------------------------------------------------------------ */
 
 #footer {
-	background: @dkgrey;
 	border: none;
 	position: relative;
 	bottom: 0;

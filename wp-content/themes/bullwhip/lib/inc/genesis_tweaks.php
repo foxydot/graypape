@@ -1,6 +1,9 @@
 <?php
 add_theme_support( 'genesis-footer-widgets', 1 );
 
+remove_action( 'genesis_after_header', 'genesis_do_subnav' );
+add_action('genesis_before_header','genesis_do_subnav');
+
 add_action('after_setup_theme','msd_child_add_homepage_hero3_sidebars');
 function msd_child_add_homepage_hero3_sidebars(){
 	genesis_register_sidebar(array(
@@ -52,19 +55,17 @@ register_nav_menus( array(
  * Replace footer
  */
 remove_action('genesis_footer','genesis_do_footer');
-//add_action('genesis_footer','msdsocial_do_footer');
+add_action('genesis_footer','msdsocial_do_footer');
 function msdsocial_do_footer(){
 	global $msd_social;
-	if(has_nav_menu('footer_library_link')){$copyright .= wp_nav_menu( array( 'theme_location' => 'footer_library_link','container_class' => 'ftr-menu','echo' => FALSE ) ).'<br />';}
-	if($msd_social){
-		$copyright .= '&copy;Copyright '.date('Y').' '.$msd_social->get_bizname().' &middot; All Rights Reserved';
-	} else {
-		$copyright .= '&copy;Copyright '.date('Y').' '.get_bloginfo('name').' &middot; All Rights Reserved ';
-	}
 	if(has_nav_menu('footer_menu')){$copyright .= wp_nav_menu( array( 'theme_location' => 'footer_menu','container_class' => 'ftr-menu ftr-links','echo' => FALSE ) );}
-	print '<div id="copyright" class="copyright gototop">'.$copyright.'</div><div id="social" class="social creds">';
-	if($msd_social){do_shortcode('[msd-social]');}
-	print '</div>';
+	if($msd_social){
+		$copyright .= '&copy;Copyright '.date('Y').' '.$msd_social->get_bizname().' &middot; All Rights Reserved<br />';
+	} else {
+		$copyright .= '&copy;Copyright '.date('Y').' '.get_bloginfo('name').' &middot; All Rights Reserved<br />';
+	}
+	$copyright .= 'Another <a href="http://adviainternet.com" target="_blank">Cincinnati Web Design by Advia Internet</a>';
+	print '<div id="copyright" class="copyright gototop">'.$copyright.'</div>';
 }
 
 /**
