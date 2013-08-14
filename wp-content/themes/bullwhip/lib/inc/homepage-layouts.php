@@ -32,19 +32,9 @@ function msd_callout(){
  * Add three widget areas
  */
 function msd_child_homepage_widgets(){
-	print '<div id="hp-bot">';
-	print '<div class="wrap">';
-	print '<div id="widgets-one" class="widget-area"><div class="wrap">';
-	dynamic_sidebar('homepage-one');
+	print '<div id="homepage-widgets" class="widget-area"><div class="wrap">';
+	dynamic_sidebar('homepage-widgets');
 	print '</div></div>';
-	print '<div id="widgets-two" class="widget-area"><div class="wrap">';
-	dynamic_sidebar('homepage-two');
-	print '</div></div>';
-	print '<div id="widgets-three" class="widget-area"><div class="wrap">';
-	dynamic_sidebar('homepage-three');
-	print '</div></div>';
-	print '</div>';
-	print '</div>';
 }
 
 /**

@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-	var numwidgets = $('.footer-widgets-1 div.widget').length;
-	$('.footer-widgets-1').addClass('cols-'+numwidgets);
-	$('.footer-widgets-1 .widget,.footer-widgets-1 .widget .widget-wrap').equalHeights();
+	var numwidgets = $('#homepage-widgets div.widget').length;
+	$('#homepage-widgets').addClass('cols-'+numwidgets);
+	$('#homepage-widgets .widget,#homepage-widgets .widget .widget-wrap').equalHeights();
 });

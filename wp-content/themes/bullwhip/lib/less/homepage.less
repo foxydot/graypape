@@ -1,2 +1,38 @@
 @import 'elements';
 @import 'mixins';
+#inner {display: none;}
+#homepage-widgets{
+	background: @green;
+	color: @white;
+	.wrap{
+		.widget{
+			float: left;
+			margin-right: 3%;
+			.widget-wrap{
+				position: relative;
+			}
+			.widget-wrap>div{
+				padding: 2em 0 6em;
+			}
+			h4{
+				color:@ltgreen;
+				text-transform: none;
+				font-weight: normal;
+				font-size: 1.4em;
+				.opensans;
+			}
+			.readmore{
+				display: table;
+				position: absolute;
+				bottom: 2em;
+				margin: 0;
+			}
+		}
+		.widget.last-child {
+			margin-right: 0;
+		}
+	}
+	.wrap:after{
+		.clearfix;
+	}
+}
