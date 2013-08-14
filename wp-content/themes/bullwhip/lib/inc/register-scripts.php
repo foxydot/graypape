@@ -7,7 +7,9 @@ add_action('wp_print_styles', 'msd_add_styles');
 function msd_add_styles() {
 	global $is_IE;
 	if(!is_admin()){
-		wp_enqueue_style('msd-style',get_stylesheet_directory_uri().'/lib/css/style.css');
+		wp_enqueue_style('bootstrap-style',get_stylesheet_directory_uri().'/lib/bootstrap/css/bootstrap.css');
+		wp_enqueue_style('font-awesome-style',get_stylesheet_directory_uri().'/lib/font-awesome/css/font-awesome.css',array('bootstrap-style'));
+		wp_enqueue_style('msd-style',get_stylesheet_directory_uri().'/lib/css/style.css',array('bootstrap-style'));
 		if($is_IE){
 			wp_enqueue_script('ie-style',get_stylesheet_directory_uri().'/lib/css/ie.css');
 		}
@@ -21,7 +23,8 @@ add_action('wp_print_scripts', 'msd_add_scripts');
 function msd_add_scripts() {
 	global $is_IE;
 	if(!is_admin()){
-		wp_enqueue_script('msd-jquery',get_stylesheet_directory_uri().'/lib/js/theme-jquery.js');
+		wp_enqueue_script('bootstrap-jquery',get_stylesheet_directory_uri().'/lib/bootstrap/js/bootstrap.min.js',array('jquery'));
+		wp_enqueue_script('msd-jquery',get_stylesheet_directory_uri().'/lib/js/theme-jquery.js',array('jquery','bootstrap-jquery'));
 		wp_enqueue_script('equalHeights',get_stylesheet_directory_uri().'/lib/js/jquery.equalheights.js');
 		if($is_IE){
 			wp_enqueue_script('columnizr',get_stylesheet_directory_uri().'/lib/js/jquery.columnizer.js');

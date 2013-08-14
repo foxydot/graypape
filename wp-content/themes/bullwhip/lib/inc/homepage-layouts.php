@@ -4,13 +4,8 @@
  */
 function msd_child_hero(){
 	if(is_active_sidebar('homepage-top')){
-		print '<div id="hp-top">';
-		print '<div class="wrap">';
+		print '<div id="hp-hero">';
 		dynamic_sidebar('homepage-top');
-		print '</div>';
-		print '<div class="wrap2">';
-		do_action( 'genesis_site_description' );
-		print '</div>';
 		print '</div>';
 	}
 }
