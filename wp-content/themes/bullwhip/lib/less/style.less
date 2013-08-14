@@ -224,7 +224,7 @@ body {
 	.menu-primary{
 		padding: 0; margin: 0;text-align: center;
 		a{color: white;font-weight: bold;text-transform:uppercase;padding: 0.5em 1em;display: block;}
-		li {margin-left:-4px;
+		li {margin-left: -4px;
 			li {border: none;}
 		}
 		li.first-child {border-left:none;}
@@ -244,7 +244,7 @@ body {
 	.menu-secondary{
 		padding: 0; margin: 0;text-align: right;
 		a{color: @medgrey;font-weight: normal;text-transform:uppercase;padding:0.85em;display: block;font-size: .75em;}
-		li {
+		li { 
 			li {border: none;}
 		}
 		li.first-child {border-left:none;}
@@ -316,6 +316,20 @@ body {
 		li.menu-item {margin-right: 4px;}
 	}
 }
+
+#location-nav{
+	ul{
+		li{
+			margin: 0.5em;
+			font-size: .75em;
+			float: left;
+			a{
+				color: @red;
+			}
+		}
+	}
+}
+.menu{li.separator {margin: 0;margin-left: 4px;margin-right: -4px;}}
 /* Inner
 ------------------------------------------------------------ */
 
@@ -788,9 +802,9 @@ input.searchsubmit:hover {
 	margin: 0 auto;
 	overflow: hidden;
 	width: 100%;
-	background: @dkgrey;
-	color: @white;
-	a {color: @white;}
+	background: @ltgrey;
+	color: @dkgrey;
+	a {color: @dkgrey;}
 }
 
 #footer-widgets .wrap {
@@ -809,7 +823,6 @@ input.searchsubmit:hover {
 }
 
 #footer-widgets {
-	background: @ltgrey;
 	.widget{
 		float: left;
 		margin-right: 3.8%;

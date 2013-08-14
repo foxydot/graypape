@@ -4,6 +4,46 @@ add_theme_support( 'genesis-footer-widgets', 1 );
 remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 add_action('genesis_before_header','genesis_do_subnav');
 
+add_action('genesis_before_footer','msd_do_location_nav');
+function msd_do_location_nav(){
+	//* If menu is assigned to theme location, output
+	if ( has_nav_menu( 'location_menu' ) ) {
+	
+		$class = 'menu genesis-nav-menu menu-location';
+		if ( genesis_superfish_enabled() )
+			$class .= ' js-superfish';
+	
+		$args = array(
+				'theme_location' => 'location_menu',
+				'container'      => '',
+				'menu_class'     => $class,
+				'echo'           => 0,
+		);
+	
+		$nav = wp_nav_menu( $args );
+	
+		//* Do nothing if there is nothing to show
+		if ( ! $nav )
+			return;
+	
+		$nav_markup_open = genesis_markup( array(
+				'html5'   => '<nav %s>',
+				'xhtml'   => '<div id="location-nav"><div class="wrap">',
+				'context' => 'nav-location',
+				'echo'    => false,
+		) );
+		$nav_markup_open .= genesis_structural_wrap( 'menu-location', 'open', 0 );
+	
+		$nav_markup_close  = genesis_structural_wrap( 'menu-location', 'close', 0 );
+		$nav_markup_close .= genesis_html5() ? '</nav>' : '</div></div>';
+	
+		$nav_output = $nav_markup_open . $nav . $nav_markup_close;
+	
+		echo apply_filters( 'genesis_do_nav', $nav_output, $nav, $args );
+	
+	}
+}
+
 add_action('after_setup_theme','msd_child_add_homepage_hero3_sidebars');
 function msd_child_add_homepage_hero3_sidebars(){
 	genesis_register_sidebar(array(
@@ -49,6 +89,7 @@ remove_action( 'genesis_after_post_content', 'genesis_post_meta' );
  * Add extra menu locations
  */
 register_nav_menus( array(
+'location_menu' => 'Location Menu',
 'footer_menu' => 'Footer Menu'
 ) );
 /**

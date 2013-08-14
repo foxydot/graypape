@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
 	$('#footer-widgets').addClass('cols-'+numwidgets);
 	
 	//special for lifestyle
-	$('#subnav ul.menu>li,.ftr-menu ul.menu>li').after(function(){
+	$('#subnav ul.menu>li,#location-nav ul.menu>li,.ftr-menu ul.menu>li').after(function(){
 		if(!$(this).hasClass('last-child') && $(this).hasClass('menu-item') && $(this).css('display')!='none'){
 			return '<li class="separator">|</li>';
 		}

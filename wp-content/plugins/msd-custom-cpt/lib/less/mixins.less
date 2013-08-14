@@ -13,10 +13,10 @@
 }
 
 /* Colors */
-@red: #6F1A1D;
+@red: #f00;
 @orange: #f90;
 @yellow: #ff0;
-@green: #807041;
+@green: #0f0;
 @blue: #00f;
 @purple: #90f;
 @beige: #c96;
@@ -41,9 +41,9 @@
 
 /* Neutrals */
 @white: #FFF;
-@ltgrey: #EAEAEA;
-@medgrey: #7D7D7D;
-@dkgrey: #525252;
+@ltgrey: #CCC;
+@medgrey: #999;
+@dkgrey: #666;
 @black: #000;
 
 /* Gradients */
@@ -53,15 +53,21 @@
 
 /* Buttons */
 .button(@color:@red) {
-	background: @color;
-	.rounded(3px);
-	padding: 4px 1em;
+	.gradient(@color,darken(@color,20%),lighten(@color,20%));
+	.rounded(5px);
+	border: .5px solid darken(@color,20%);
+	.drop-shadow(0, 0, 2px, 0.2);
+	padding: 6px 24px;
+	.arial;
 	color: #FFFFFF !important;
-	font-size: .75em;
-	font-weight: bold;
+	font-size: 12px;
+	font-weight: normal;
+	text-shadow: 1px 1px 2px #000000;
     text-transform: uppercase;
-    display: inline-block;
-    margin: 0 1em;
+    display: table;
+    margin: 12px auto;
+	text-decoration: none;
+    filter: dropshadow(color=#000000, offx=1, offy=1);
 }
 
 .button:hover,
@@ -101,84 +107,6 @@
 	height: 25px;
 	width: 25px;
 	cursor: pointer;
-}
-
-
-/* Column Classes
------------------------------------------------------------- */
-
-.five-sixths,
-.four-fifths,
-.four-sixths,
-.one-fifth,
-.one-fourth,
-.one-half,
-.one-sixth,
-.one-third,
-.three-fifths,
-.three-fourths,
-.three-sixths,
-.two-fifths,
-.two-fourths,
-.two-sixths,
-.two-thirds {
-	float: left;
-	margin: 0 0 20px;
-	padding-left: 3%;
-}
-
-.one-half,
-.three-sixths,
-.two-fourths {
-	width: 48%;
-}
-
-.one-third,
-.two-sixths {
-	width: 31%;
-}
-
-.four-sixths,
-.two-thirds {
-	width: 65%;
-}
-
-.one-fourth {
-	width: 22.5%;
-}
-
-.three-fourths {
-	width: 73.5%;
-}
-
-.one-fifth {
-	width: 17.4%;
-}
-
-.two-fifths {
-	width: 37.8%;
-}
-
-.three-fifths {
-	width: 58.2%;
-}
-
-.four-fifths {
-	width: 78.6%;
-}
-
-.one-sixth {
-	width: 14%;
-}
-
-.five-sixths {
-	width: 82%;
-}
-
-.first {
-	clear: both;
-	margin-left: 0;
-	padding-left: 0;
 }
 
 /* Clears */
