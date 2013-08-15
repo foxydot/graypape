@@ -81,7 +81,7 @@ textarea {
 
 a,
 a:visited {
-	color: @dkred;
+	color: @red;
 	text-decoration: none;
 }
 
@@ -215,10 +215,11 @@ body {
 
 .menu-primary li ul,
 #header .menu li ul {
-	width: 240px;
+	width: 150px;
 }
 #nav {
 	background: @green;
+	position:relative;
 	z-index: 50;
 	.wrap:after{.clearfix;}
 	.menu-primary{
@@ -229,6 +230,11 @@ body {
 		}
 		li.first-child {border-left:none;}
 		li:hover, li.current-menu-item, li.current-menu-ancestor {
+		}
+		li:hover {
+			.sub-menu{
+				display: block;
+			}
 		}
 	}
 	.s {margin:0;width:200px;}
@@ -277,28 +283,30 @@ body {
 	#header .menu li li a,#header .menu li li a:link,#header .menu li li a:visited {
 		background: none;
 		border-top: none;
-		padding: .25em 1em;
-		width: 240px;
+		padding: 0;
+		width: 100%;
 	}
 }
 
 #nav{
 	.sub-menu{
+		background: @green;
+		display: none;
 		position: absolute;
-		background-color: @beige;
 		padding-left: 0;
 		.drop-shadow(0, 1px, 8px, 0.4);
 		li{
 			padding: 0.5em;
-			border-top: 1px solid @ltbeige !important;
+			border-top: 1px solid @ltgreen !important;
 			margin: 0;
 			width: 100%;
 			a{
-				padding: 0.5em;
+				text-transform: none;
+				font-weight: normal;
 			}
 		}
 		li:hover {
-			background: @dkbeige;
+			background: @dkgreen;
 		}
 	}
 }
@@ -468,9 +476,9 @@ h1 {
 }
 
 h1.entry-title {
-	text-transform: uppercase;
-	font-size: 24px;
-	font-weight: bold;
+	font-size: 2em;
+	color: @red;
+	.opensans;
 }
 .taxonomy-description h1 {
 	margin: 0;
@@ -501,6 +509,11 @@ h2 a:hover {
 
 h3 {
 	font-size: 16px;
+	color: @green;
+	padding: 0.5em 0;
+	margin: 0.5em 0;
+	border-top: 1px solid @ltgrey;
+	border-bottom: 1px solid @ltgrey;
 }
 
 h4 {
@@ -604,7 +617,7 @@ h5 {
 .post-image {
 	background-color: @ltgrey;
 	border: 1px solid @ltgrey;
-	padding: 4px;
+	padding: 6px;
 }
 
 .author-box .avatar {
@@ -644,14 +657,13 @@ h5 {
 
 #sidebar {
 	float: left;
-	padding: 10px 0 0;
-.widget {
-	margin: 0 0 15px;
-	padding: 0 0 15px;
-}
+	padding: 0;
+	.widget {
+		margin: 0 0 15px;
+		padding: 0 0 15px;
+	}
 }
 
-.sidebar.widget-area ul li,
 #footer-widgets .widget-area ul li {
 	border-bottom: 0px solid @ltgrey;
 	list-style-type: none;
@@ -670,24 +682,28 @@ h5 {
 			.opensans;
 			font-weight: bold;
 			font-size: 1.2em;
-			padding: 0 0 6px;
+			padding: 0.5em 0;
 			text-transform: uppercase;
+			border-top: 4px solid @ltgrey;
 			a{
-				color: @dkred;
+				color: @green;
 				display: block;
 			}
-			ul{
-			padding: 1em 0;
+			ul.sub-menu{
+			padding: 0.5em 0;
 				li {
+				border-top: .5px solid @ltgreen;
+				background: @green;
+				display: block;
 				font-weight: normal;
-				padding: 6px 0;
+				padding: 0;
 				a {
 					.arial;
 					border: none;
 					font-size: .8em;
-					color: @dkred;
+					color: @white;
 					text-transform: none;
-					padding-left: 6px;
+					padding: 0.5em;
 					}
 				ul{
 					padding: 0;
@@ -700,7 +716,7 @@ h5 {
 					}
 				}
 				li:hover,li.current-menu-item {
-					background: @white;
+					background: @dkgreen;
 				}
 			}
 		}

@@ -1,4 +1,5 @@
 <?php
+add_theme_support( 'genesis-structural-wraps', array( 'header', 'nav', 'subnav', 'inner', 'footer-widgets', 'footer' ) );
 add_theme_support( 'genesis-footer-widgets', 1 );
 
 remove_action( 'genesis_after_header', 'genesis_do_subnav' );
@@ -126,7 +127,7 @@ function msd_new_custom_layout_logic() {
 	}
 }
 /** Add new image sizes */
-add_image_size( 'post-image', 540, 150, TRUE ); //image to float at the top of the post. Reversed Out does these a lot.
+add_image_size( 'post-image', 670, 242, TRUE ); //image to float at the top of the post. Reversed Out does these a lot.
 
 /* Manipulate the featured image */
 add_action( 'genesis_before_post', 'msd_post_image', 8 );
@@ -135,7 +136,7 @@ function msd_post_image() {
    	//setup thumbnail image args to be used with genesis_get_image();
 	$size = 'post-image'; // Change this to whatever add_image_size you want
 	$default_attr = array(
-			'class' => "alignright attachment-$size $size",
+			'class' => "alignnone attachment-$size $size",
 			'alt'   => $post->post_title,
 			'title' => $post->post_title,
 	);
