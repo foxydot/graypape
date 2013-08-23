@@ -22,8 +22,8 @@ jQuery(document).ready(function($) {
 	$('#footer-widgets div.widget:nth-child(even)').addClass('even');
 	$('#footer-widgets div.widget:nth-child(odd)').addClass('odd');
 	
-	var numwidgets = $('#footer-widgets div.widget').length;
-	$('#footer-widgets').addClass('cols-'+numwidgets);
+	var numwidgets = $('#footer-widgets .widget-area div.widget').length;
+	$('#footer-widgets .widget-area').addClass('cols-'+numwidgets);
 	
 	//special for lifestyle
 	$('#subnav ul.menu>li,#location-nav ul.menu>li,.ftr-menu ul.menu>li').after(function(){

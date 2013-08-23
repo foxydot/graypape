@@ -24,7 +24,7 @@ class MSDSocial{
 		 */
 		$this->requireDir($this->the_path . '/inc');
 		wp_enqueue_style('msd-social-style',$this->the_url.'css/style.css');
-		wp_enqueue_style('msd-social-style-'.$this->icon_size,$this->the_url.'css/style'.$this->icon_size.'.css');
+		//wp_enqueue_style('msd-social-style-'.$this->icon_size,$this->the_url.'css/style'.$this->icon_size.'.css');
 		add_shortcode('msd-address',array(&$this,'get_address'));
 		add_shortcode('msd-bizname',array(&$this,'get_bizname'));
 		add_shortcode('msd-copyright',array(&$this,'get_copyright'));
@@ -76,37 +76,35 @@ function copyright($address = TRUE){
 
 
 function social_media($attr){
-	?>
-	<div id="social-media" class="social-media">
+	?><div id="social-media" class="social-media">
 			<?php if(get_option('msdsocial_linkedin_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_linkedin_link'); ?>" class="li" title="LinkedIn" target="_blank">LinkedIn</a>
+			<a href="<?php echo get_option('msdsocial_linkedin_link'); ?>" class="li btn btn-mini" title="LinkedIn" target="_blank"><i class="icon-linkedin-sign icon-large"></i> LinkedIn</a>
 			<?php }?>
 			<?php if(get_option('msdsocial_twitter_user')!=""){ ?>
-			<a href="http://www.twitter.com/<?php echo get_option('msdsocial_twitter_user'); ?>" class="tw" title="Follow Us on Twitter!" target="_blank">Twitter</a>
+			<a href="http://www.twitter.com/<?php echo get_option('msdsocial_twitter_user'); ?>" class="tw btn btn-mini" title="Follow Us on Twitter!" target="_blank"><i class="icon-twitter-sign icon-large"></i> Twitter</a>
 			<?php }?>
 			<?php if(get_option('msdsocial_google_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_google_link'); ?>" class="gl" title="Google+" target="_blank">Google+</a>
+			<a href="<?php echo get_option('msdsocial_google_link'); ?>" class="gl btn btn-mini" title="Google+" target="_blank"><i class="icon-google-plus-sign icon-large"></i> Google+</a>
 			<?php }?>
 			<?php if(get_option('msdsocial_facebook_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_facebook_link'); ?>" class="fb" title="Join Us on Facebook!" target="_blank">Facebook</a>
+			<a href="<?php echo get_option('msdsocial_facebook_link'); ?>" class="fb btn btn-mini" title="Join Us on Facebook!" target="_blank"><i class="icon-facebook-sign icon-large"></i> Facebook</a>
 			<?php }?>
 			<?php if(get_option('msdsocial_flickr_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_flickr_link'); ?>" class="fl" title="Flickr" target="_blank">Flickr</a>
+			<a href="<?php echo get_option('msdsocial_flickr_link'); ?>" class="fl btn btn-mini" title="Flickr" target="_blank"><i class="icon-flickr-sign icon-large"></i> Flickr</a>
 			<?php }?>
 			<?php if(get_option('msdsocial_youtube_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_youtube_link'); ?>" class="yt" title="YouTube" target="_blank">YouTube</a>
+			<a href="<?php echo get_option('msdsocial_youtube_link'); ?>" class="yt btn btn-mini" title="YouTube" target="_blank"><i class="icon-youtube icon-large"></i> YouTube</a>
 			<?php }?>
 			<?php if(get_option('msdsocial_sharethis_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_sharethis_link'); ?>" class="st" title="ShareThis" target="_blank">ShareThis</a>
+			<a href="<?php echo get_option('msdsocial_sharethis_link'); ?>" class="st btn btn-mini" title="ShareThis" target="_blank"><i class="icon-share-sign icon-large"></i> ShareThis</a>
 			<?php }?>
 			<?php if(get_option('msdsocial_pinterest_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_pinterest_link'); ?>" class="pin" title="Pinterest" target="_blank">Pinterest</a>
+			<a href="<?php echo get_option('msdsocial_pinterest_link'); ?>" class="pin btn btn-mini" title="Pinterest" target="_blank"><i class="icon-pinterest-sign icon-large"></i> Pinterest</a>
 			<?php }?>
 			<?php if(get_option('msdsocial_show_feed')!=""){ ?>
-			<a href="<?php bloginfo('rss2_url'); ?>" class="rss" title="RSS Feed" target="_blank">RSS Feed</a>
+			<a href="<?php bloginfo('rss2_url'); ?>" class="rss btn btn-mini" title="RSS Feed" target="_blank"><i class="icon-rss-sign icon-large"></i> RSS Feed</a>
 			<?php }?>
-		</div>
-		<?php 
+		</div><?php 
 }
 
 function requireDir($dir){

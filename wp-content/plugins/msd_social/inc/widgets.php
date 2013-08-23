@@ -17,7 +17,7 @@ class MSDConnected extends WP_Widget {
 		echo $before_widget;
 		if ( !empty( $title ) ) { print $before_title.$title.$after_title; } 
 		?>
-		<p><?php echo $text; ?></p>
+		<?php echo $text!=''?'<p>'.$text.'</p>':''; ?>
 		<?php do_shortcode('[msd-social]'); ?>
 	<div class="clear"></div>
 	<div id="digits">
