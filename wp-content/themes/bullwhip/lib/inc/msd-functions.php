@@ -120,6 +120,15 @@ function msd_allow_all_embeds(){
 			"width" => array()
 	);
 }
+/**
+ * Custom admin login header logo
+ */
+function custom_login_logo() {
+    echo '<style type="text/css">'.
+             'h1 a { background-image:url('.get_bloginfo( 'stylesheet_directory' ).'/lib/img/logo.png) !important; }'.
+         '</style>';
+}
+add_action( 'login_head', 'custom_login_logo' );
 
 /**
  * Check if a post is a particular post type.
