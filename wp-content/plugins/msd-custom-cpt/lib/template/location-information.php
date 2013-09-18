@@ -80,7 +80,7 @@ $states = array('AL'=>"Alabama",
 	<select tabindex="4" id="<?php $metabox->the_name(); ?>" name="<?php $metabox->the_name(); ?>">
 		<option value="">--SELECT--</option>
 		<?php foreach($states AS $k =>$v){ ?>
-			<option value="<?php print $v; ?>"<?php print $metabox->the_value()==$v?' SELECTED':''?>><?php print $v; ?></option>
+			<option value="<?php print $v; ?>"<?php print $metabox->get_the_value()==$v?' SELECTED':''?>><?php print $v; ?></option>
 		<?php } ?>
 	</select>
 	</div>

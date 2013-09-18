@@ -231,11 +231,43 @@ body {
 		li.first-child {border-left:none;}
 		li:hover, li.current-menu-item, li.current-menu-ancestor {
 		}
-		li:hover {
-			.sub-menu{
-				display: block;
-			}
-		}
+    li:hover {
+      .sub-menu{
+        display: block;
+        li {
+          .sub-menu{
+            left: 150px;
+            margin-top: -20px;
+            display: none;
+          }
+        }
+        li:hover {
+          .sub-menu{
+            display: block;
+            li {
+              .sub-menu{
+                display: none;
+              }
+            }
+            li:hover {
+              .sub-menu{
+                display: block;
+                li {
+                  .sub-menu{
+                    display: none;
+                  }
+                }
+                li:hover {
+                  .sub-menu{
+                    display: block;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
 	}
 	.s {margin:0;width:200px;}
 	.searchform {padding: 0.6em;}
