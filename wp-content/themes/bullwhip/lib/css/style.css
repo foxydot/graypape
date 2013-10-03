@@ -81,7 +81,7 @@ body{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;font-size:14px;marg
 .full-width-content #content{width:100%}
 .post{margin:0 0 40px}
 .entry-content{overflow:hidden}
-.entry-content p{margin:0 0 25px}
+.entry-content p{margin:0 0 1em}
 blockquote{background:url(images/blockquote.png) no-repeat;border:none;margin:5px 5px 20px;padding:25px 30px 5px 70px}
 blockquote p{color:#7d7d7d;font-style:italic}
 p.subscribe-to-comments{padding:20px 0 10px}
@@ -102,7 +102,8 @@ h4{font-size:18px}
 .widget-area h4 a{color:#eaeaea;text-decoration:none}
 #footer-widgets h4{background:none;border:none;padding:0}
 h5{font-size:18px}
-.archive-page ul li,.entry-content ul li,.hentry ul li{list-style:square inside url(../img/arrow.png);margin-bottom:.25em}
+.entry-content ol,.entry-content ul{margin-top:-0.5em;margin-bottom:1.5em}
+.archive-page ul li,.entry-content ul li,.hentry ul li{list-style:square inside none;margin-bottom:.25em}
 .post-info{font-size:14px;margin:-5px 0 15px}
 .post-meta{border-top:1px solid #eaeaea;clear:both;font-size:14px;padding:5px 0 0}
 .author-box{background-color:#eaeaea}
