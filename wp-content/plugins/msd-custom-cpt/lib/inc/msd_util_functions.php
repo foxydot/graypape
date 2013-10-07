@@ -1,4 +1,33 @@
 <?php
+if( ! function_exists('msd_taxonomy_description')){
+    function msd_taxonomy_description() {
+        global $wp,$wp_query;
+        $tax = $wp_query->query_vars[taxonomy];
+        $term = $wp_query->query_vars[$tax];
+        $term_info = get_term_by('slug',$term,$tax);
+        $description = $term_info->description;
+        print '<h2 class="entry-title">'.$term_info->name.'</h2>
+        <div class="'.$tax.' '.$term.' description">'.$description.'</div>';
+    }
+}
+
+if( ! function_exists('msd_taxonomy_children')){
+    function msd_taxonomy_children() {
+        global $wp,$wp_query;
+        $tax = $wp_query->query_vars[taxonomy];
+        $term = $wp_query->query_vars[$tax];
+        $term_info = get_term_by('slug',$term,$tax);
+        $child_terms = get_term_children($term_info->term_id,$tax);
+        if($child_terms){
+            foreach($child_terms AS $child){
+                $child_term = get_term_by( 'id', $child, $tax );
+                $list .= '<li><a href="' . get_term_link( $child, $tax ) . '">' . $child_term->name . '</a></li>';
+            }
+            print '<ul class="child-terms">'.$list.'</ul>';
+        }
+    }
+}
+
 if ( ! function_exists( 'msd_trim_headline' ) ) :
 	function msd_trim_headline($text, $length = 35) {
 		$raw_excerpt = $text;
