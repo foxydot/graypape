@@ -22,8 +22,8 @@ if (!class_exists('MSDProjectCPT')) {
             add_action( 'init', array(&$this,'register_taxonomy_market_sector') );
             add_action( 'init', array(&$this,'register_cpt_project') );
             add_action('admin_head', array(&$this,'plugin_header'));
-            add_action('admin_print_scripts', array(&$this,'add_admin_scripts') );
-            add_action('admin_print_styles', array(&$this,'add_admin_styles') );
+            add_action('admin_enqueue_scripts', array(&$this,'add_admin_scripts') );
+            add_action('admin_enqueue_scripts', array(&$this,'add_admin_styles') );
             add_action('admin_footer',array(&$this,'info_footer_hook') );
             // important: note the priority of 99, the js needs to be placed after tinymce loads
             add_action('admin_print_footer_scripts',array(&$this,'print_footer_scripts'),99);
@@ -155,8 +155,7 @@ if (!class_exists('MSDProjectCPT')) {
             if($current_screen->post_type == $this->cpt){
                 wp_enqueue_script('media-upload');
                 wp_enqueue_script('thickbox');
-                wp_register_script('my-upload', plugin_dir_url(dirname(__FILE__)).'/js/msd-upload-file.js', array('jquery','media-upload','thickbox'),FALSE,TRUE);
-                wp_enqueue_script('my-upload');
+                wp_enqueue_script('imagemapster',plugin_dir_url(dirname(__FILE__)).'js/jquery.imagemapster.min.js',array('jquery'),FALSE,TRUE);
             }
         }
         
@@ -164,13 +163,13 @@ if (!class_exists('MSDProjectCPT')) {
             global $current_screen;
             if($current_screen->post_type == $this->cpt){
                 wp_enqueue_style('thickbox');
-                wp_enqueue_style('custom_meta_css',plugin_dir_url(dirname(__FILE__)).'/css/meta.css');
+                wp_enqueue_style('custom_meta_css',plugin_dir_url(dirname(__FILE__)).'css/meta.css');
             }
         }   
             
         function print_footer_scripts()
         {
-            global $current_screen;
+            global $current_screen, $areas;
             if($current_screen->post_type == $this->cpt){
                 print '<script type="text/javascript">/* <![CDATA[ */
                     jQuery(function($)
@@ -188,6 +187,17 @@ if (!class_exists('MSDProjectCPT')) {
              
                             tinyMCE.execCommand(\'mceAddControl\', false, id);
              
+                        });
+                                            
+                        var img = $(\'.imagemap\'),
+                            list = $(\'#statelist\');
+                        
+                        img.mapster({
+                            mapKey: \'state\',
+                            boundList: list.find(\'input\'),
+                            listKey: \'value\',
+                            listSelectedAttribute: \'checked\',
+                            areas : ['.$areas.']
                         });
                     });
                 /* ]]> */</script>';
