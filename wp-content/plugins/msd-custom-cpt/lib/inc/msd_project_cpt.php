@@ -22,6 +22,7 @@ if (!class_exists('MSDProjectCPT')) {
             add_action( 'init', array(&$this,'register_taxonomy_market_sector') );
             add_action( 'init', array(&$this,'register_cpt_project') );
             add_action('admin_head', array(&$this,'plugin_header'));
+            add_action('wp_enqueue_scripts', array(&$this,'add_front_scripts') );
             add_action('admin_enqueue_scripts', array(&$this,'add_admin_scripts') );
             add_action('admin_enqueue_scripts', array(&$this,'add_admin_styles') );
             add_action('admin_footer',array(&$this,'info_footer_hook') );
@@ -312,6 +313,13 @@ if (!class_exists('MSDProjectCPT')) {
 
     </map>';
         print $map;
+        }
+        
+        function add_front_scripts(){
+           global $post_type;
+            if($post_type == $this->cpt){
+               wp_enqueue_script('imagemapster',plugin_dir_url(dirname(__FILE__)).'js/jquery.imagemapster.min.js',array('jquery'),FALSE,TRUE);
+            }
         }
          
         function add_admin_scripts() {
