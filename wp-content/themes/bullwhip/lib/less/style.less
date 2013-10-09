@@ -711,24 +711,23 @@ h5 {
 	word-wrap: break-word;
 }
 
-.sidebar.widget-area .widget_advanced_menu {
+.sidebar.widget-area {
 	.menu {
 		padding-left: 0;
 		a:hover {text-decoration: none;}
-		>li{ display: none;}
-		>li.current-menu-ancestor, >li.current-menu-item {
-			display: block;
+		>li{
 			.opensans;
 			font-weight: bold;
 			font-size: 1.2em;
 			padding: 0.5em 0;
 			text-transform: uppercase;
 			border-top: 4px solid @ltgrey;
+      color: @green;
 			a{
 				color: @green;
 				display: block;
 			}
-			ul.sub-menu{
+			ul{
 			padding: 0.5em 0;
 				li {
 				border-top: .5px solid @ltgreen;
@@ -749,9 +748,18 @@ h5 {
 					border-top: 1px solid @medgrey;
 					li{
 						a{
-					padding-left: 12px;}
+					padding-left: 1em;}
 					}
 					li.last-child {border-bottom: none;}
+          ul{
+            padding: 0;
+            border-top: 1px solid @medgrey;
+            li{
+              a{
+            padding-left: 1.5em;}
+            }
+            li.last-child {border-bottom: none;}
+            }
 					}
 				}
 				li:hover,li.current-menu-item {
@@ -760,6 +768,26 @@ h5 {
 			}
 		}
 	}
+}
+
+.sidebar.widget-area .widget_advanced_menu {
+  .menu {
+    >li{ display: none;}
+    >li.current-menu-ancestor, >li.current-menu-item {
+      display: block;
+    }
+  }
+}
+
+.sidebar.widget-area .taxonomy_menu {
+  .menu {
+    li ul li ul li ul li{ display: none;}
+    li ul li ul li.current-cat,
+    li ul li ul li.current-cat-parent .children>li, 
+    li ul li ul li.current-cat .children>li {
+      display: block;
+    }
+  }
 }
 /* Form Buttons
 ------------------------------------------------------------ */
@@ -1014,4 +1042,14 @@ input.searchsubmit:hover {
 	 .readmore{
 	.button(@red);
 	}
+}
+
+.tax-market_sector,.tax-project_type{
+  .entry{
+    h2.entry-title{
+      a{
+        font-size: 0.75em;
+      }
+    }
+  }
 }

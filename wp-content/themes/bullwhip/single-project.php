@@ -1,11 +1,4 @@
 <?php
-if(stripos($_SERVER['HTTP_REFERER'],'project-type')){
-    
-}elseif(stripos($_SERVER['HTTP_REFERER'],'market-sector')){
-    
-}else{
-    //default to state
-}
 add_action('wp_enqueue_scripts','msd_add_single_project_assets');
 add_action('wp_enqueue_scripts','msd_add_single_project_assets');
 add_action('wp_print_footer_scripts','msd_single_project_print_footer_scripts',99);
@@ -13,11 +6,23 @@ add_action('wp_print_footer_scripts','msd_single_project_print_footer_scripts',9
 add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
 remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
 add_action( 'genesis_sidebar_alt', 'msd_sidebar_project_info_box' );
-
+add_action('genesis_sidebar','msd_sidebar_project_menu');
 genesis();
 
 function msd_add_single_project_assets(){
     wp_enqueue_style('single-project',get_stylesheet_directory_uri().'/lib/css/single-project-style.css',array('msd-style'));
+}
+
+function msd_sidebar_project_menu(){
+    if(stripos($_SERVER['HTTP_REFERER'],'project-type')){
+        $path = 'project-type';
+    }elseif(stripos($_SERVER['HTTP_REFERER'],'market-sector')){
+        $path = 'market-sector';
+    }else{
+        //default to state
+        $path = 'default';
+    }
+    ts_data($path);
 }
 
 function msd_sidebar_project_info_box(){
