@@ -48,6 +48,20 @@ if( ! function_exists('msd_list_taxonomy')){
     }
 }
 
+if( ! function_exists('msd_sidebar_taxonomy_menu')){
+    function msd_sidebar_taxonomy_menu(){
+        print '<div class="taxonomy_menu">';
+        print '<ul class="menu">';
+        print '<li>Our Work<ul>';
+        print msd_list_taxonomy('project_type','Project Types');
+        print msd_list_taxonomy('market_sector','Market Sectors');
+        print '<li><strong><a href="projects-state">By State</a></strong></li>';
+        print '</ul></li>';
+        print '</ul>';
+        print '</div>';
+    }
+}
+
 if ( ! function_exists( 'msd_trim_headline' ) ) :
 	function msd_trim_headline($text, $length = 35) {
 		$raw_excerpt = $text;

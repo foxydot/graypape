@@ -412,6 +412,7 @@ if (!class_exists('MSDProjectCPT')) {
                 }
                 elseif( $query->is_main_query() && $query->is_archive ) {
                     $query->set( 'post_type', array('post','page',$this->cpt) );
+                    $query->set('posts_per_page', 30);
                 }
             }
         }           

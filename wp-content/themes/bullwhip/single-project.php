@@ -4,9 +4,14 @@ add_action('wp_enqueue_scripts','msd_add_single_project_assets');
 add_action('wp_print_footer_scripts','msd_single_project_print_footer_scripts',99);
 
 add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
+
+add_action( 'genesis_before_content', 'msd_post_image', 8 );
+remove_action( 'genesis_before_post', 'msd_post_image', 8 );
 remove_action( 'genesis_sidebar_alt', 'genesis_do_sidebar_alt' );
 add_action( 'genesis_sidebar_alt', 'msd_sidebar_project_info_box' );
-add_action('genesis_sidebar','msd_sidebar_project_menu');
+
+add_action('genesis_sidebar','msd_sidebar_taxonomy_menu');
+//add_action('genesis_sidebar','msd_sidebar_project_menu');
 genesis();
 
 function msd_add_single_project_assets(){
@@ -22,7 +27,7 @@ function msd_sidebar_project_menu(){
         //default to state
         $path = 'default';
     }
-    ts_data($path);
+    ts_data($_SERVER['HTTP_REFERER']);
 }
 
 function msd_sidebar_project_info_box(){
