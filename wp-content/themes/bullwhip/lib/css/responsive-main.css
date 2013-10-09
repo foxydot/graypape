@@ -6,7 +6,7 @@
 .wrap .onecol{width:4.85%}
 .wrap .twocol{width:22.05%}
 .content-sidebar #sidebar,.sidebar-content #sidebar,.wrap .threecol,#sidebar-alt{width:22.05%}
-.content-sidebar-sidebar #sidebar,.sidebar-sidebar-content #sidebar,.sidebar-content-sidebar #sidebar{width:17.3%}
+.content-sidebar-sidebar #sidebar,.sidebar-sidebar-content #sidebar,.sidebar-content-sidebar #sidebar{width:22.05%}
 .wrap .fourcol{width:30.75%}
 .wrap .fivecol{width:39.45%}
 .wrap .sixcol{width:48%}
@@ -14,7 +14,7 @@
 .wrap .eightcol{width:65.4%}
 .content-sidebar #content,.sidebar-content #content,.wrap .ninecol,.content-sidebar-sidebar #content,.sidebar-sidebar-content #content,.sidebar-content-sidebar #content{width:74.05%}
 .wrap .tencol{width:82.7%}
-.content-sidebar-sidebar #content-sidebar-wrap,.sidebar-sidebar-content #content-sidebar-wrap,.sidebar-content-sidebar #content-sidebar-wrap,.sidebar-content-sidebar .breadcrumb{width:82.7%}
+.content-sidebar-sidebar #content-sidebar-wrap,.sidebar-sidebar-content #content-sidebar-wrap,.sidebar-content-sidebar #content-sidebar-wrap,.sidebar-content-sidebar .breadcrumb{width:74.05%}
 .wrap .elevencol{width:91.35%}
 .wrap .twelvecol{width:100%;float:left}
 .last,.content-sidebar #sidebar,.sidebar-content #content,.sidebar-sidebar-content #content-sidebar-wrap,.sidebar-content-sidebar #content-sidebar-wrap,.sidebar-content-sidebar #sidebar{margin-right:0}
