@@ -30,6 +30,19 @@ if( ! function_exists('msd_taxonomy_children')){
 
 if( ! function_exists('msd_list_taxonomy')){
     function msd_list_taxonomy($taxonomy,$title=''){
+        global $post,$current_category;
+        if(get_post_type()=='project' && is_single()){
+            global $decorations;
+            $referrers = array_filter(explode('/',preg_replace('@'.get_site_url(1,FALSE,'http').'@i','',$_SERVER['HTTP_REFERER'])));
+            $current_taxonomy = array_shift($referrers);
+            $decorations = array();
+            foreach($referrers AS $referrer){
+                $current_term = get_term_by('slug', $referrer, preg_replace('/-/','_',$current_taxonomy));
+                $decorations['cats'][] = '.cat-item-'.$current_term->term_id;
+                $decorations['parents'][] = '.cat-item-'.$current_term->parent;
+            }
+        }
+        
         $orderby      = 'name'; 
         $show_count   = 0;      // 1 for yes, 0 for no
         $pad_counts   = 0;      // 1 for yes, 0 for no
