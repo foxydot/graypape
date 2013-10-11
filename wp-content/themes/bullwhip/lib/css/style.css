@@ -131,6 +131,7 @@ h5{font-size:18px}
 .sidebar.widget-area .widget_advanced_menu .menu>li.current-menu-ancestor,.sidebar.widget-area .widget_advanced_menu .menu>li.current-menu-item{display:block}
 .sidebar.widget-area .taxonomy_menu .menu li ul li ul li ul li{display:none}
 .sidebar.widget-area .taxonomy_menu .menu li ul li ul li.current-cat,.sidebar.widget-area .taxonomy_menu .menu li ul li ul li.current-cat-parent .children>li,.sidebar.widget-area .taxonomy_menu .menu li ul li ul li.current-cat .children>li{display:block}
+.sidebar.widget-area .taxonomy_menu .menu .current-cat,.sidebar.widget-area .taxonomy_menu .menu .current-cat-parent{background:#3c351f}
 input[type="button"],input[type="submit"]{background:#6f1a1d;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;padding:4px 1em;color:#fff !important;font-size:.75em;font-weight:bold;text-transform:uppercase;display:inline-block;margin:0 1em}
 .searchform input[type="text"]{-webkit-box-shadow:inset 0 1px 5px #7d7d7d;-moz-box-shadow:inset 0 1px 5px #7d7d7d;box-shadow:inset 0 1px 5px #7d7d7d;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;font-size:12px;padding:5px}
 #header .searchform{float:right;padding:12px 0 0}
@@ -172,4 +173,5 @@ input.searchsubmit,input.searchsubmit:hover{background:#6f1a1d;-webkit-border-ra
 .entry-content h6{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;font-weight:bold;border-top:1px solid #7d7d7d;padding-top:10px}
 .widget_text p,.widget_sp_image p{font-size:12px}
 .widget_text .readmore,.widget_sp_image .readmore{background:#6f1a1d;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;padding:4px 1em;color:#fff !important;font-size:.75em;font-weight:bold;text-transform:uppercase;display:inline-block;margin:0 1em}
-.tax-market_sector .entry h2.entry-title a,.tax-project_type .entry h2.entry-title a{font-size:.75em}
+.tax-market_sector ul.archive-list,.tax-project_type ul.archive-list{margin-left:2em}.tax-market_sector ul.archive-list li,.tax-project_type ul.archive-list li{list-style:square outside none}
+.tax-market_sector .entry h4.entry-title a,.tax-project_type .entry h4.entry-title a{font-size:.75em}
