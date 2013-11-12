@@ -41,7 +41,7 @@ $contact_info = new WPAlchemy_MetaBox(array
         (
             'id' => '_contact_info',
             'title' => 'Contact Info',
-            'types' => array('team_member'), // added only for pages and to custom post type "events"
+            'types' => array('location','team_member'), // added only for pages and to custom post type "events"
             'context' => 'normal', // same as above, defaults to "normal"
             'priority' => 'high', // same as above, defaults to "high"
             'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php').'lib/template/contact-info.php',
