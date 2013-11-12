@@ -1,5 +1,5 @@
 <?php 
-global $location_info,$client_info,$additional_files;
+global $location_info,$client_info,$additional_files,$contact_info,$additional_info,$primary_practice_area;
 
 $client_info = new WPAlchemy_MetaBox(array
         (
@@ -36,4 +36,42 @@ $additional_files = new WPAlchemy_MetaBox(array
             'autosave' => TRUE,
             'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
             'prefix' => '_files_' // defaults to NULL
+        ));
+$contact_info = new WPAlchemy_MetaBox(array
+        (
+            'id' => '_contact_info',
+            'title' => 'Contact Info',
+            'types' => array('team_member'), // added only for pages and to custom post type "events"
+            'context' => 'normal', // same as above, defaults to "normal"
+            'priority' => 'high', // same as above, defaults to "high"
+            'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php').'lib/template/contact-info.php',
+            'autosave' => TRUE,
+            'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+            'prefix' => '_team_member_' // defaults to NULL
+        ));
+
+$additional_info = new WPAlchemy_MetaBox(array
+        (
+            'id' => '_additional_information',
+            'title' => 'Additional Information',
+            'types' => array('team_member'),
+            'context' => 'normal',
+            'priority' => 'high',
+            'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php').'lib/template/additional-information.php',
+            'autosave' => TRUE,
+            'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+            'prefix' => '_team_member_' // defaults to NULL
+        ));
+        
+$primary_practice_area = new WPAlchemy_MetaBox(array
+        (
+            'id' => '_primary_practice_area',
+            'title' => 'Primary Practice Area',
+            'types' => array('team_member'),
+            'context' => 'side',
+            'priority' => 'low',
+            'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php').'lib/template/primary-practice-area.php',
+            'autosave' => TRUE,
+            'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+            'prefix' => '_team_member_' // defaults to NULL
         ));
