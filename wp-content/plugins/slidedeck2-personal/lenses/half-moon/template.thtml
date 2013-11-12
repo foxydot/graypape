@@ -30,7 +30,7 @@
     					echo $excerpt;
     				}
     				?></p>
-    				<a href="<?php echo $permalink; ?>" class="readmore accent-color">Read more&#8230;</a>
+    				<a href="<?php echo $permalink; ?>" class="readmore accent-color" target="<?php echo $target; ?>">Read more&#8230;</a>
 				</div>
 			</div>
 		</div>

@@ -22,7 +22,6 @@ class SlideDeckSource_CustomContent extends SlideDeck {
         ),
         'Playback' => array(
             'start' => array(
-                'type' => 'hidden',
                 'value' => 1
             )
         )
@@ -456,6 +455,9 @@ class SlideDeckSource_CustomContent extends SlideDeck {
                     $size = $SlideDeckPlugin->SlideDeck->get_closest_size( $slidedeck );
                 }
                 
+                // Maybe translate the content
+                $nodes = apply_filters( "{$this->namespace}_after_custom_slide_nodes", $nodes, $slidedeck );
+                
                 // Extract all values to be available as variables in the template
                 extract( $nodes );
                 
@@ -622,6 +624,7 @@ class SlideDeckSource_CustomContent extends SlideDeck {
         // The slide objects for each slide associated with this SlideDeck
         $slidedeck_slides = $this->Slide->get_slidedeck_slides( $slidedeck_id );
         
+
         // Slide counter
         $slide_counter = 1;
         
@@ -695,7 +698,7 @@ class SlideDeckSource_CustomContent extends SlideDeck {
             $slide['content'] = $this->process_template( $slide_nodes, $slidedeck, $deck_iteration );
             
             $slide_asset_slug = "slidedeck-slide-{$slide['type']}";
-            
+
             /**
              * Check to see if the page has a mixture of deck types.
              * The $SlideDeckPlugin->only_has_iframe_decks propety will return false
