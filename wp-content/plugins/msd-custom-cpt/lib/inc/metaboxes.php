@@ -1,6 +1,18 @@
 <?php 
-global $location_info,$client_info,$additional_files,$contact_info,$additional_info,$primary_practice_area;
+global $project_info,$location_info,$client_info,$additional_files,$contact_info,$additional_info,$primary_practice_area;
 
+$project_info = new WPAlchemy_MetaBox(array
+        (
+            'id' => '_project_information',
+            'title' => 'Project Information',
+            'types' => array('project'),
+            'context' => 'normal',
+            'priority' => 'high',
+            'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php').'lib/template/project-information.php',
+            'autosave' => TRUE,
+            'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+            'prefix' => '_project_' // defaults to NULL
+        ));
 $client_info = new WPAlchemy_MetaBox(array
         (
             'id' => '_Client_information',
