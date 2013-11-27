@@ -200,12 +200,21 @@ if (!class_exists('MSDProjectCPT')) {
                             'key' => '_location_project_states',
                             'value' => $state,
                             'compare' => 'LIKE'
-                        )
+                        ),
+                       array(
+                           'key' => '_project_feature',
+                           'value' => 'true',
+                           'compare' => '='
+                       )
                     )
             );
             $projects = get_posts($args);
-            foreach($projects AS $project){
-                $list .= '<li><a href="'.get_post_permalink($project->ID).'">'.$project->post_title.'</a></li>';
+            if(count($projects)>0){
+                foreach($projects AS $project){
+                    $list .= '<li><a href="'.get_post_permalink($project->ID).'">'.$project->post_title.'</a></li>';
+                }
+            } else {
+                $list = 'Sorry, there are no project abstracts available for '.$state.'.';
             }
             print '<ul>'.$list.'</ul>';
         }
@@ -411,6 +420,14 @@ if (!class_exists('MSDProjectCPT')) {
                     ts_data($query);
                 }
                 elseif( $query->is_main_query() && $query->is_archive ) {
+                    $meta_query = array(
+                           array(
+                               'key' => '_project_feature',
+                               'value' => 'true',
+                               'compare' => '='
+                           )
+                       );
+                    $query->set( 'meta_query', $meta_query);
                     $query->set( 'post_type', array('post','page',$this->cpt) );
                     $query->set('posts_per_page', 30);
                 }

@@ -56,7 +56,6 @@ function msd_do_post_title() {
 
 }
 function msd_standard_loop() {
-
     //* Use old loop hook structure if not supporting HTML5
     if ( ! genesis_html5() ) {
         msd_legacy_loop();
@@ -98,8 +97,6 @@ function msd_legacy_loop() {
     $loop_counter = 0;
 
     if ( have_posts() ) : while ( have_posts() ) : the_post();
-        $project_info->the_meta();
-        if($project_info->get_the_value('feature')==true):
         do_action( 'genesis_before_post' );
 
         printf( '<li class="%s">', join( ' ', get_post_class() ) );
@@ -117,7 +114,6 @@ function msd_legacy_loop() {
         echo '</li>'; //* end .entry
 
         do_action( 'genesis_after_post' );
-        endif; //end feature check
         $loop_counter++;
 
     endwhile; //* end of one post
@@ -128,4 +124,5 @@ function msd_legacy_loop() {
     endif; //* end loop
 
 }
+
 ?>
