@@ -73,9 +73,12 @@ foreach($featured_projects AS $project){
         $client_client[] = array('name'=>$project['Client']);
         update_post_meta($post_id, '_client_client', $client_client);
         //add service areas
+        set_my_taxonomy($post_id,'project_type',$project['Project Type']);
         //add market sectors
+        set_my_taxonomy($post_id,'market_sector',$project['Market Sector']);
     }
 }
+
 foreach ($projects as $project) {
    if($existing_project = does_project_exist($project['Project Title'])){
         //add the id number
@@ -139,7 +142,9 @@ foreach ($projects as $project) {
         $client_client[] = array('name'=>$project['Client']);
         update_post_meta($post_id, '_client_client', $client_client);
         //add service areas
+        set_my_taxonomy($post_id,'project_type',$project['Project Type']);
         //add market sectors
+        set_my_taxonomy($post_id,'market_sector',$project['Market Sector']);
     }
 }
 
@@ -178,6 +183,17 @@ function parse_csvfile($file,$delimiter=",",$indexrow=TRUE){
         $i++;
     }
     return $list;
+}
+
+function set_my_taxonomy($post_id,$tax,$terms){
+    $term_array = preg_split('@[-|\/]@i',$terms);
+    foreach($term_array AS $term){
+        $term = trim($term);
+        if($term_row = get_term_by('name',$term,$tax)){
+            $terms_to_input[] = $term_row->term_id;
+        }
+    }
+    wp_set_post_terms( $post_id, $terms_to_input, $tax, true );
 }
 
 genesis();
