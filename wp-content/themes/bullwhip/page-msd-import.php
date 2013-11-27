@@ -189,7 +189,7 @@ function set_my_taxonomy($post_id,$tax,$terms){
     $term_array = preg_split('@[-|\/]@i',$terms);
     foreach($term_array AS $term){
         $term = trim($term);
-        if($term_row = get_term_by('name',$term,$tax)){
+        if($term_row = get_term_by('slug',$term,$tax)){
             $terms_to_input[] = $term_row->term_id;
         }
     }

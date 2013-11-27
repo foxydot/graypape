@@ -93,12 +93,13 @@ function msd_standard_loop() {
 }
 function msd_legacy_loop() {
 
-    global $loop_counter;
+    global $loop_counter,$project_info;
 
     $loop_counter = 0;
 
     if ( have_posts() ) : while ( have_posts() ) : the_post();
-
+        $project_info->the_meta();
+        if($project_info->get_the_value('feature')==true):
         do_action( 'genesis_before_post' );
 
         printf( '<li class="%s">', join( ' ', get_post_class() ) );
@@ -116,6 +117,7 @@ function msd_legacy_loop() {
         echo '</li>'; //* end .entry
 
         do_action( 'genesis_after_post' );
+        endif; //end feature check
         $loop_counter++;
 
     endwhile; //* end of one post
