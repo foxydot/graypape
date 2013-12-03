@@ -97,11 +97,11 @@ if (!class_exists('MSDTeamCPT')) {
                 
                 'show_in_nav_menus' => true,
                 'publicly_queryable' => true,
-                'exclude_from_search' => true,
+                'exclude_from_search' => false,
                 'has_archive' => true,
                 'query_var' => true,
                 'can_export' => true,
-                'rewrite' => array('slug'=>'team_member','with_front'=>false),
+                'rewrite' => array('slug'=>'team','with_front'=>false),
                 'capability_type' => 'post'
             );
         
@@ -179,24 +179,19 @@ if (!class_exists('MSDTeamCPT')) {
 
         function custom_query( $query ) {
             if(!is_admin()){
-                $is_team_member = ($query->query_vars['practice_area'])?TRUE:FALSE;
+                $is_team_member = ($query->query['post_type'] == $this->cpt)?TRUE:FALSE;
                 if($query->is_main_query() && $query->is_search){
-                    $searchterm = $query->query_vars['s'];
-                    // we have to remove the "s" parameter from the query, because it will prevent the posts from being found
-                    $query->query_vars['s'] = "";
-                    
-                    if ($searchterm != "") {
-                        $query->set('meta_value',$searchterm);
-                        $query->set('meta_compare','LIKE');
-                    };
-                    $query->set( 'post_type', array('post','page',$this->cpt) );
+                    $post_types = $query->query_vars['post_type'];
+                    if(count($post_types)==0){
+                        $post_types[] = 'post';
+                        $post_types[] = 'page';
+                    }
+                    $post_types[] = $this->cpt;
+                    $query->set( 'post_type', $post_types );
                 }
-                elseif( $query->is_main_query() && $query->is_archive && $is_team_member ) {
-                    //ts_data($query);
-                    $query->set( 'orderby', 'date');
-                    $query->set( 'order', 'ASC');
-                    $query->set( 'posts_per_page', 100 );
+                elseif( $query->is_main_query() && $query->is_archive && $is_team_member) {
                     $query->set( 'post_type', $this->cpt );
+                    $query->set( 'meta_query', array() );
                 }
             }
         }           

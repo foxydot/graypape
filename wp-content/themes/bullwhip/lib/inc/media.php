@@ -25,6 +25,7 @@ add_filter( 'image_size_names_choose', 'msd_insert_custom_image_sizes' );
 
 /** Add new image sizes */
 add_image_size( 'post-image', 740, 280, TRUE ); //image to float at the top of the post. Reversed Out does these a lot.
+add_image_size('headshot', 300, 200, TRUE);
 
 /* Manipulate the featured image */
 add_action( 'genesis_before_post', 'msd_post_image', 8 );

@@ -13,7 +13,7 @@ $i = 0; ?>
 <?php
 foreach($fields AS $k=>$v){
 ?>
-	<?php $mb->the_field('_attorney_'.$k); ?>
+	<?php $mb->the_field('_team_'.$k); ?>
 	<li class="gfield even" id="field_<?php $mb->the_name(); ?>"><label for="<?php $mb->the_name(); ?>"
 		class="gfield_label"><?php print $v; ?></label>
 	<div class="ginput_container last-child even">

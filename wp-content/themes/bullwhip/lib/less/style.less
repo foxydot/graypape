@@ -1063,3 +1063,54 @@ input.searchsubmit:hover {
     }
   }
 }
+
+ul.team-member-contact-info {
+  border: 1px solid @medgrey;
+  border-width: 1px 0px;
+  margin: 0.5em 0;
+  padding: 0.5em 0;
+  li {
+    list-style: none outside none;
+    display: inline-block;
+    margin: 0 .5em;
+  }
+  li:before{
+    content: '';
+  }
+  li:first-child {margin-left: 0;}
+  li:last-child {margin-right: 0;}
+}
+
+
+ul.team-additional-info{
+  display: none;
+  h3 {
+    border: 1px solid @medgrey;
+    border-width: 1px 0px;
+    margin: .5em 0;
+  }
+  li{
+    list-style: none outside none;
+    margin-bottom: 3em;
+    ul{
+      li{
+        margin-bottom: .5em;
+      }
+    }
+  }
+  li:before{
+    content: '';
+  }
+}
+
+
+h3.toggle{
+  cursor: pointer;
+  span{
+    text-transform: none;
+    float: right;
+  }
+  span.collapse{
+    display: none;
+  }
+}

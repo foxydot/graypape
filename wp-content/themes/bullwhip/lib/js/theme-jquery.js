@@ -32,4 +32,11 @@ jQuery(document).ready(function($) {
 		}
 	});
 	
+	$('h3.toggle').click(
+            function() {
+                $('.team-additional-info').slideToggle();
+                $(this).find('span').toggle();
+              }
+        );
+	
 });
