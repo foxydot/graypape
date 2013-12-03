@@ -126,3 +126,19 @@ function msd_new_custom_layout_logic() {
 		add_action( 'genesis_after_content', 'genesis_get_sidebar_alt');
 	}
 }
+
+function msd_child_excerpt( $post_id = NULL, $excerpt_length = 30, $trailing_character = '&nbsp;<i class="icon-circle-arrow-right"></i>' ) {
+if($post_id){$the_post = get_post( $post_id );}else{global $post;$the_post = $post;}
+    $the_excerpt = strip_tags( strip_shortcodes( $the_post->post_excerpt ) );
+     
+    if ( empty( $the_excerpt ) )
+    $the_excerpt = strip_tags( strip_shortcodes( $the_post->post_content ) );
+     
+    $words = explode( ' ', $the_excerpt, $excerpt_length + 1 );
+     
+    if( count( $words ) > $excerpt_length )
+    $words = array_slice( $words, 0, $excerpt_length );
+     
+    $the_excerpt = implode( ' ', $words ) . ' <a href="'.get_post_permalink($post_id).'">'.$trailing_character.'</a>';
+    print $the_excerpt;
+}
