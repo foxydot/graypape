@@ -95,14 +95,17 @@ $states = array('AL'=>"Alabama",
 <li>
     
     <div class="boundList" id="statelist">
-        <?php foreach($states AS $k =>$v): ?>
-
         <?php $metabox->the_field('project_states'); ?>
-
+        <?php $checkedstates = $metabox->get_the_value('project_states'); ?>
+        <?php ts_data($checkedstates); ?>
+        
+        <?php foreach($states AS $k =>$v): ?>
+        <?php $checked = in_array($k,$checkedstates)?' CHECKED':FALSE; ?>
         <!-- similar to test #2, the same thing can be accomplished by simply
         adding array brackets "[]" to the name -->
-        <input type="checkbox" name="<?php $mb->the_name(); ?>[]" value="<?php echo $k; ?>"<?php $mb->the_checkbox_state($k); ?>/> <?php echo $v; ?><br/>
-        <?php if($mb->get_the_checkbox_state($k)!=''){
+        <input type="checkbox" name="<?php $metabox->the_name(); ?>[]" value="<?php echo $k; ?>"<?php print $checked; ?>/> <?php echo $v; ?><br/>
+        <?php ts_data($metabox->get_the_checkbox_state($k)); ?>
+        <?php if($checked){
             $areas .= '{key:"'.$k.'",selected:true},';
         }?>
     <?php endforeach; ?>
