@@ -193,7 +193,7 @@ if (!class_exists('MSDProjectCPT')) {
             $state = urldecode($wp_query->query_vars['msd_state']);
             $args = array(
                 'post_type' => 'project',
-                'posts_per_page' => -1,
+                'numberposts' => 30,
                 'post_status' => array( 'publish'),
                 'meta_query' => array(
                         array(
@@ -216,7 +216,34 @@ if (!class_exists('MSDProjectCPT')) {
             } else {
                 $list = 'Sorry, there are no project abstracts available for '.$state.'.';
             }
-            print '<ul>'.$list.'</ul>';
+            print '<h3>Featured Projects</h3><ul>'.$list.'</ul>';
+            $list = '';
+            $args = array(
+                'post_type' => 'project',
+                'numberposts' => 30,
+                'post_status' => array( 'publish'),
+                'meta_query' => array(
+                        array(
+                            'key' => '_location_project_states',
+                            'value' => $state,
+                            'compare' => 'LIKE'
+                        ),
+                       array(
+                           'key' => '_project_feature',
+                           'value' => 'true',
+                           'compare' => '!='
+                       )
+                    )
+            );
+            $projects = get_posts($args);
+            if(count($projects)>0){
+                foreach($projects AS $project){
+                    $list .= '<li>'.$project->post_title.'</li>';
+                }
+            } else {
+                $list = 'Sorry, there are no project abstracts available for '.$state.'.';
+            }
+            print '<h3>Additional Projects</h3><ul>'.$list.'</ul>';
         }
         
         function display_selection_map(){
