@@ -1,6 +1,6 @@
 <?php
-function msd_add_location_image(){
-    global $post;
+function msd_add_location_image($post = false){
+    if(!$post){global $post;}
     //setup thumbnail image args to be used with genesis_get_image();
     $size = 'headshot'; // Change this to whatever add_image_size you want
     $default_attr = array(
@@ -10,12 +10,15 @@ function msd_add_location_image(){
     );
 
     // This is the most important part!  Checks to see if the post has a Post Thumbnail assigned to it. You can delete the if conditional if you want and assume that there will always be a thumbnail
-    if ( has_post_thumbnail() ) {
+    if ( has_post_thumbnail($post->ID) ) {
         printf( '%s', genesis_get_image( array( 'size' => $size, 'attr' => $default_attr ) ) );
     }
 }
-function msd_location_contact_info(){
-    global $post,$contact_info,$location_info;
+function msd_location_contact_info($post = false){
+    if(!$post){global $post;}
+    global $contact_info,$location_info;
+    $contact_info->the_meta($post->ID);
+    $location_info->the_meta($post->ID);
     ?>
     <ul class="team-member-contact-info">
         <?php $contact_info->the_field('_team_phone'); ?>
@@ -45,3 +48,27 @@ function msd_location_contact_info(){
     </ul>
     <?php
 }
+function display_all_locations_shortcode_handler($atts){
+    $args = array(
+        'post_type' => 'location',
+        'order' => 'ASC',
+        'orderby' => 'post_title',
+        'numberposts' => -1,
+    );
+    $all_locations = get_posts($args);
+    foreach($all_locations AS $location){
+        print '<div class="location">';
+        if(has_post_thumbnail($location->ID)){
+            print get_the_post_thumbnail($location->ID,'headshot',array(
+            'class' => "alignleft attachment-headshot headshot",
+            'alt'   => $location->post_title,
+            'title' => $location->post_title,
+    ));
+        }
+        print '<h3 class="location-title">'.$location->post_title.'</h3>';
+        msd_location_contact_info($location);
+        print $location->post_content;
+        print '</div>';
+    }
+}
+add_shortcode('locations', 'display_all_locations_shortcode_handler');
