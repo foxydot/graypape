@@ -38,5 +38,9 @@ jQuery(document).ready(function($) {
                 $(this).find('span').toggle();
               }
         );
-	
+        
+    var special = $('.taxonomy_menu .project_type .cat-item-18');
+    $('.taxonomy_menu .project_type .cat-item-18').remove();
+    $('.taxonomy_menu .project_type>ul').prepend(special);
+
 });
