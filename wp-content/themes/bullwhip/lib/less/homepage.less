@@ -58,11 +58,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 		.widget{
 			float: left;
 			margin-right: 3%;
+			padding: 2em 0 6em;
 			.widget-wrap{
 				position: relative;
 			}
 			.widget-wrap>div{
-				padding: 2em 0 6em;
 			}
 			h4{
 				color:@ltgreen;
@@ -71,11 +71,37 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 				font-size: 1.4em;
 				.opensans;
 			}
-			.readmore{
+			.post{
+			  position: relative;
+			  padding-bottom: 2em;
+			  h2 a{
+  			  color: @red;
+  			  font-size: 1.2em;
+  			  font-weight: bold;
+  			}
+  			h2 a:hover{
+  			  color: @red;
+  			}
+        .more-link{
+          .button(@red);
+          display: table;
+          position: absolute;
+          bottom: 0;
+          margin: 0;
+          right: 1em;
+        }
+  		}
+			
+			.more-from-category{
 				display: table;
-				position: absolute;
+				position: relative;
 				bottom: 2em;
 				margin: 0;
+				width: 100%;
+				text-align: right;
+				a{
+				  .button(@red);
+				}
 			}
 		}
 		.widget.last-child {
