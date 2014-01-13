@@ -301,7 +301,7 @@ if (!class_exists('MSDProjectCPT')) {
             $projects = get_posts($args);
             if(count($projects)>0){
                 foreach($projects AS $project){
-                    $list .= '<li id="'.$project->ID.'"><a href="javascript:showProjectInfo('.$project->ID.')">'.$project->post_title.'</a></li>';
+                    $list .= '<li><a href="javascript:showProjectInfo(sidebar-'.$project->ID.')">'.$project->post_title.'</a></li>';
                 }
             } else {
                 $list = 'Sorry, there are no additional projects available for '.$this->state[$state].'.';
@@ -423,14 +423,45 @@ if (!class_exists('MSDProjectCPT')) {
             print $ret;
         }
         
-        function msd_sidebar_project_info_box($post){
-            global $post,$location_info,$client_info,$additional_files,$states,$areas;
+        function msd_sidebar_project_info_box($post = false){
+            global $location_info,$client_info,$additional_files,$states,$areas;
+            if(!$post){
+              global $post; 
+            }
             $location_info->the_meta($post->ID);
             $client_info->the_meta($post->ID);
             $client = $client_info->get_the_value('client');
             $client = $client[0];
             $project_types = get_the_terms($post->ID, 'project_type');
+            $project_types_args = array(
+                'show_option_all'    => '',
+                'orderby'            => 'name',
+                'order'              => 'ASC',
+                'style'              => 'list',
+                'hide_empty'         => 1,
+                'title_li'           => __( '' ),
+                'show_option_none'   => __(''),
+                'number'             => null,
+                'echo'               => 0,
+                'taxonomy'           => 'project_type',
+                'walker'             => null,
+                'selected'           => $project_types
+            );
             $market_sectors = get_the_terms($post->ID, 'market_sector');
+            $market_sectors_args = array(
+                'show_option_all'    => '',
+                'orderby'            => 'name',
+                'order'              => 'ASC',
+                'style'              => 'list',
+                'hide_empty'         => 1,
+                'title_li'           => __( '' ),
+                'show_option_none'   => __(''),
+                'number'             => null,
+                'echo'               => 0,
+                'taxonomy'           => 'market_sector',
+                'walker'             => null,
+                'selected'           => $market_sectors
+            );
             $selected_states = $location_info->get_the_value('project_states');
             $ret = '<h4>Client:</h4>
             <ul class="client-name">
@@ -438,15 +469,11 @@ if (!class_exists('MSDProjectCPT')) {
             </ul>';
             $ret .= '<h4>Services:</h4>
             <ul class="services">';
-                foreach($project_types AS $project_type){
-                    $ret .= '<li><a href="'.get_term_link($project_type).'">'.$project_type->name.'</a></li>';
-                }
+                $ret .= $this->list_applied_tax($project_types_args);
             $ret .= '</ul>';
             $ret .= '<h4>Markets:</h4>
             <ul class="markets">';
-                foreach($market_sectors AS $market_sector){
-                    $ret .= '<li><a href="'.get_term_link($market_sector).'">'.$market_sector->name.'</a></li>';
-                }
+                $ret .= $this->list_applied_tax($market_sectors_args);
             $ret .= '</ul>';
             $ret .= '<h4>States:</h4>
             <img id="usa_image_map" src="'.get_stylesheet_directory_uri().'/lib/img/map.png" usemap="#usa_image_map" class="imagemap">
@@ -570,6 +597,98 @@ function msd_get_usa_imagemap(){
     <area href="#" state="LA" full="Louisiana" shape="poly" coords="437,357,437,356,436,353,433,350,434,345,434,344,432,344,426,345,409,346,408,344,409,338,411,334,415,328,414,326,415,326,416,324,414,323,414,321,413,318,413,314,404,314,391,314,374,314,374,321,375,329,376,331,377,334,378,338,381,341,381,344,382,344,381,350,379,354,380,356,380,358,380,363,378,365,379,368,382,367,388,366,395,369,400,370,403,369,405,370,407,371,408,369,406,368,404,368,401,367,406,366,407,366,410,366,410,368,410,370,414,370,416,371,415,372,414,373,415,374,421,377,424,376,425,374,426,374,428,372,428,373,429,375,428,376,428,377,431,375,432,373,433,373,431,372,431,371,431,370,433,370,434,369,434,369,440,374,441,374,443,374,444,375,446,373,446,372,445,372,443,370,438,369,436,368,437,366,438,366,439,365,437,365,437,365,440,365,441,362,440,361,440,359,439,359,437,361,437,362,434,362,434,361,435,359,437,358,437,357">
 
     </map>';
+    }
+
+    function list_applied_tax( $args = '' ) {
+        global $post;
+        $defaults = array(
+            'show_option_all' => '', 'show_option_none' => __('No categories'),
+            'orderby' => 'name', 'order' => 'ASC',
+            'style' => 'list',
+            'show_count' => 0, 'hide_empty' => 1,
+            'use_desc_for_title' => 1, 'child_of' => 0,
+            'feed' => '', 'feed_type' => '',
+            'feed_image' => '', 'exclude' => '',
+            'exclude_tree' => '', 'current_category' => 0,
+            'hierarchical' => true, 'title_li' => __( 'Categories' ),
+            'echo' => 1, 'depth' => 0,
+            'taxonomy' => 'category', 'selected' => get_the_terms($post->ID, 'category')
+        );
+    
+        $r = wp_parse_args( $args, $defaults );
+    
+        if ( !isset( $r['pad_counts'] ) && $r['show_count'] && $r['hierarchical'] )
+            $r['pad_counts'] = true;
+    
+        if ( true == $r['hierarchical'] ) {
+            $r['exclude_tree'] = $r['exclude'];
+            $r['exclude'] = '';
+        }
+    
+        if ( !isset( $r['class'] ) )
+            $r['class'] = ( 'category' == $r['taxonomy'] ) ? 'categories' : $r['taxonomy'];
+    
+        extract( $r );
+    
+        if ( !taxonomy_exists($taxonomy) )
+            return false;
+    
+        $all_categories = get_categories( $r );
+        
+        foreach($selected AS $s){
+            $activetax[] = $s->term_id;
+        }
+            
+        foreach($all_categories AS $ac){
+            if(in_array($ac->term_id, $activetax)){
+                $categories[] = $ac;
+            }
+        }
+                    
+        $output = '';
+        if ( $title_li && 'list' == $style )
+                $output = '<li class="' . esc_attr( $class ) . '">' . $title_li . '<ul>';
+    
+        if ( empty( $categories ) ) {
+            if ( ! empty( $show_option_none ) ) {
+                if ( 'list' == $style )
+                    $output .= '<li class="cat-item-none">' . $show_option_none . '</li>';
+                else
+                    $output .= $show_option_none;
+            }
+        } else {
+            if ( ! empty( $show_option_all ) ) {
+                $posts_page = ( 'page' == get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) ? get_permalink( get_option( 'page_for_posts' ) ) : home_url( '/' );
+                $posts_page = esc_url( $posts_page );
+                if ( 'list' == $style )
+                    $output .= "<li class='cat-item-all'><a href='$posts_page'>$show_option_all</a></li>";
+                else
+                    $output .= "<a href='$posts_page'>$show_option_all</a>";
+            }
+    
+            if ( empty( $r['current_category'] ) && ( is_category() || is_tax() || is_tag() ) ) {
+                $current_term_object = get_queried_object();
+                if ( $current_term_object && $r['taxonomy'] === $current_term_object->taxonomy )
+                    $r['current_category'] = get_queried_object_id();
+            }
+    
+            if ( $hierarchical )
+                $depth = $r['depth'];
+            else
+                $depth = -1; // Flat.
+    
+            $output .= walk_category_tree( $categories, $depth, $r );
+        }
+    
+        if ( $title_li && 'list' == $style )
+            $output .= '</ul></li>';
+    
+        $output = apply_filters( 'wp_list_categories', $output, $args );
+    
+        if ( $echo )
+            echo $output;
+        else
+            return $output;
     }
     
     function print_footer_scripts()
