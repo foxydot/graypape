@@ -806,7 +806,7 @@ function msd_get_usa_imagemap(){
                     $query->set( 'post_type', array('post','page',$this->cpt) );
                     ts_data($query);
                 }
-                elseif( $query->is_main_query() && $query->is_archive ) {
+                elseif( $query->is_main_query() && $query->is_archive && $is_project ) {
                     $meta_query = array(
                            array(
                                'key' => '_project_feature',
