@@ -83,6 +83,10 @@ if (!class_exists('MSDProjectCPT')) {
             
             add_action('wp_enqueue_scripts',array(&$this,'get_project_list'));
             
+            // connect your ajax handler to the custom action hook for your action
+            add_action('wp_ajax_my_frontend_action', array($this, 'frontend_ajax_handler'));
+            add_action('wp_ajax_nopriv_my_frontend_action', array($this, 'frontend_ajax_handler'));
+            
             //Filters
             add_filter( 'pre_get_posts', array(&$this,'custom_query') );
             add_filter( 'enter_title_here', array(&$this,'change_default_title') );
@@ -218,6 +222,7 @@ if (!class_exists('MSDProjectCPT')) {
         function add_rewrite_rules($aRules) {
             $aNewRules['projects-state/?$'] = 'index.php?pagename=projects-state';
             $aNewRules['projects-state/([^/]+)/?$'] = 'index.php?pagename=projects-state&msd_state=$matches[1]';
+            $aNewRules['projectInfo'] = 'index.php?pagename=projectInfo';
             $aRules = $aNewRules + $aRules;
             return $aRules;
         }
@@ -229,8 +234,15 @@ if (!class_exists('MSDProjectCPT')) {
                 remove_action('genesis_post_title','genesis_do_post_title');
                 remove_action('genesis_entry_content','genesis_do_post_content');
                 remove_action( 'genesis_post_content', 'genesis_do_post_content' );
+                    
                 if(isset($wp_query->query_vars['msd_state'])) {
                     wp_enqueue_script('imagemapster',plugin_dir_url(dirname(__FILE__)).'js/jquery.imagemapster.min.js',array('jquery'),FALSE,TRUE);
+                    wp_enqueue_script('showProjectInfo',plugin_dir_url(dirname(__FILE__)).'js/showProjectInfo.js',array('jquery'),FALSE,TRUE);
+                    // localize it (define ajax object for your variables)
+                    wp_localize_script('showProjectInfo', 'MyAjaxObject', array(
+                        'ajax_url' => admin_url('admin-ajax.php'),
+                        'nonce' => wp_create_nonce('my-frontend-action-nonce'),
+                    ));
                     add_action('genesis_post_content',array(&$this,'state_title'));
                     add_action( 'genesis_post_content', array(&$this,'display_project_list') );
                     add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
@@ -242,8 +254,23 @@ if (!class_exists('MSDProjectCPT')) {
                     wp_enqueue_script('imagemapster',plugin_dir_url(dirname(__FILE__)).'js/jquery.imagemapster.min.js',array('jquery'),FALSE,TRUE);
                     wp_enqueue_script('imagemapster-front',plugin_dir_url(dirname(__FILE__)).'js/plugin.jquery.js',array('jquery','imagemapster'),FALSE,TRUE);
                 }
-            }
+            } 
         }
+
+        public function frontend_ajax_handler()
+            {
+                global $wpdb;
+                // now you can access the database
+                // make sure the request is legit
+                if (!wp_verify_nonce($_POST['nonce'], 'my-frontend-action-nonce')) {
+                    exit; 
+                }
+        
+                // print out the POST array
+                $post = get_post($_POST['id']);
+                print $this->msd_sidebar_project_info_box($post);
+                exit; 
+            }
         
         function state_title(){
             global $wp,$wp_query;
@@ -301,7 +328,7 @@ if (!class_exists('MSDProjectCPT')) {
             $projects = get_posts($args);
             if(count($projects)>0){
                 foreach($projects AS $project){
-                    $list .= '<li><a href="javascript:showProjectInfo(sidebar-'.$project->ID.')">'.$project->post_title.'</a></li>';
+                    $list .= '<li><a href="#'.$project->ID.'" id="'.$project->ID.'">'.$project->post_title.'</a></li>';
                 }
             } else {
                 $list = 'Sorry, there are no additional projects available for '.$this->state[$state].'.';
