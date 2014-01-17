@@ -283,7 +283,7 @@ if (!class_exists('MSDProjectCPT')) {
             $state = urldecode($wp_query->query_vars['msd_state']);
             $args = array(
                 'post_type' => 'project',
-                'numberposts' => 30,
+                'numberposts' => 100,
                 'post_status' => array( 'publish'),
                 'meta_query' => array(
                         array(
@@ -310,7 +310,7 @@ if (!class_exists('MSDProjectCPT')) {
             $list = '';
             $args = array(
                 'post_type' => 'project',
-                'numberposts' => 30,
+                'numberposts' => 100,
                 'post_status' => array( 'publish'),
                 'meta_query' => array(
                         array(
@@ -318,11 +318,18 @@ if (!class_exists('MSDProjectCPT')) {
                             'value' => $state,
                             'compare' => 'LIKE'
                         ),
-                       array(
-                           'key' => '_project_feature',
-                           'value' => 'true',
-                           'compare' => '!='
-                       )
+                       'meta_qurery' => array(
+                            'relation' => 'OR',
+                            array(
+                               'key' => '_project_feature',
+                               'value' => 'true',
+                               'compare' => '!='
+                           ),
+                            array(
+                               'key' => '_project_feature',
+                               'compare' => 'NOT EXISTS'
+                           )  
+                        )      
                     )
             );
             $projects = get_posts($args);
@@ -820,7 +827,7 @@ function msd_get_usa_imagemap(){
 
         function custom_query( $query ) {
             if(!is_admin()){
-                $is_project = ($query->query_vars['project_type'])?TRUE:FALSE;
+                $is_project = ($query->query_vars['project_type'] || $query->query_vars['market_sector'])?TRUE:FALSE;
                 if($query->is_main_query() && $query->is_search){
                     $searchterm = $query->query_vars['s'];
                     // we have to remove the "s" parameter from the query, because it will prevent the posts from being found
