@@ -189,7 +189,7 @@ if (!class_exists('MSDProjectCPT')) {
                 'hierarchical' => false,
                 'description' => 'Project',
                 'supports' => array( 'title', 'editor', 'author', 'thumbnail' ),
-                'taxonomies' => array( 'category', 'project_type', 'market_sector' ),
+                'taxonomies' => array( 'project_type', 'market_sector' ),
                 'public' => true,
                 'show_ui' => true,
                 'show_in_menu' => true,
