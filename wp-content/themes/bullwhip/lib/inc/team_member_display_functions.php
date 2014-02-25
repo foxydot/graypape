@@ -23,7 +23,9 @@ function msd_team_member_contact_info(){
             'vcard' => 'download-alt',
             'email' => 'envelope-alt',
     );
+    $contact_info->the_meta($post->ID);
     ?>
+    
     <ul class="team-member-contact-info">
         <?php $contact_info->the_field('_team_phone'); ?>
         <?php if($contact_info->get_the_value() != ''){ ?>
