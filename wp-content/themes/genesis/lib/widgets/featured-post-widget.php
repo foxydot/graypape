@@ -156,7 +156,6 @@ class Genesis_Featured_Post extends WP_Widget {
 
 			if ( $instance['show_title'] )
 				echo genesis_html5() ? '</header>' : '';
-
 			if ( ! empty( $instance['show_content'] ) ) {
 
 				echo genesis_html5() ? '<div class="entry-content">' : '';
@@ -464,5 +463,4 @@ class Genesis_Featured_Post extends WP_Widget {
 		<?php
 
 	}
-
 }

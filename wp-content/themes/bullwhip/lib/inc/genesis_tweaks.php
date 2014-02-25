@@ -142,3 +142,8 @@ if($post_id){$the_post = get_post( $post_id );}else{global $post;$the_post = $po
     $the_excerpt = implode( ' ', $words ) . ' <a href="'.get_post_permalink($post_id).'">'.$trailing_character.'</a>';
     print $the_excerpt;
 }
+add_filter('get_the_content_limit_allowedtags','msdlab_get_the_content_limit_allowedtags');
+function msdlab_get_the_content_limit_allowedtags($tags){
+    $tags .= ',<a>';
+    return $tags;
+}

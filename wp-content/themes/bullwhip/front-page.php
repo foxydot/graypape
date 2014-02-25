@@ -1,4 +1,5 @@
 <?php
+global $wp_filter;ts_var( $wp_filter['the_content_limit'] );
 //remove sidebars (jsut in case)
 remove_all_actions('genesis_sidebar');
 remove_all_actions('genesis_sidebar_alt');
