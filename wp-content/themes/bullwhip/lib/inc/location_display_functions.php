@@ -57,18 +57,22 @@ function display_all_locations_shortcode_handler($atts){
     );
     $all_locations = get_posts($args);
     foreach($all_locations AS $location){
-        print '<div class="location">';
+        $ret .= '<div class="location">';
         if(has_post_thumbnail($location->ID)){
-            print get_the_post_thumbnail($location->ID,'headshot',array(
+            $ret .= get_the_post_thumbnail($location->ID,'headshot',array(
             'class' => "alignleft attachment-headshot headshot",
             'alt'   => $location->post_title,
             'title' => $location->post_title,
     ));
         }
-        print '<h3 class="location-title">'.$location->post_title.'</h3>';
+        $ret .= '<h3 class="location-title">'.$location->post_title.'</h3>';
+        ob_start();
         msd_location_contact_info($location);
-        print $location->post_content;
-        print '</div>';
+        $ret .= ob_get_contents();
+        ob_end_clean();
+        $ret .= $location->post_content;
+        $ret .= '</div>';
     }
+    return $ret;
 }
 add_shortcode('locations', 'display_all_locations_shortcode_handler');
