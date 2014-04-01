@@ -56,7 +56,6 @@ if( ! function_exists('msd_list_taxonomy')){
           'hierarchical' => $hierarchical,
           'title_li'     => '<strong><a>'.$title.'</a></strong>'
         );
-        
         return wp_list_categories( $args );
     }
 }

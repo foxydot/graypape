@@ -34,10 +34,10 @@ jQuery(document).ready(function(){
 			
 		
 		/*SMOOTH SCROLLING*/
-		jQuery(".scroll, .gototop a").click(function(event){		
+		/*jQuery(".scroll, .gototop a").click(function(event){		
 			event.preventDefault();
 			jQuery('html,body').animate({scrollTop:jQuery(this.hash).offset().top}, 500);
-		});
+		});*/
 
 
 });
