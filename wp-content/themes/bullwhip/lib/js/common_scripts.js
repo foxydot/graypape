@@ -38,6 +38,4 @@ jQuery(document).ready(function(){
 			event.preventDefault();
 			jQuery('html,body').animate({scrollTop:jQuery(this.hash).offset().top}, 500);
 		});*/
-
-
 });

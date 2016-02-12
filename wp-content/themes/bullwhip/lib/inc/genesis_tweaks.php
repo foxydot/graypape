@@ -1,4 +1,6 @@
 <?php
+add_filter('the_content_limit','wp_strip_all_tags');
+
 add_theme_support( 'genesis-structural-wraps', array( 'header', 'nav', 'subnav', 'inner', 'footer-widgets', 'footer' ) );
 add_theme_support( 'genesis-footer-widgets', 1 );
 
