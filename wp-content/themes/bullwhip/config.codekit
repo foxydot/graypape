@@ -1,6 +1,6 @@
 {
 "CodeKitInfo": "This is a CodeKit 2.x project configuration file. It is designed to sync project settings across multiple machines. MODIFYING THE CONTENTS OF THIS FILE IS A POOR LIFE DECISION. If you do so, you will likely cause CodeKit to crash. This file is not useful unless accompanied by the project that created it in CodeKit 2. This file is not backwards-compatible with CodeKit 1.x. For more information, see: http:\/\/incident57.com\/codekit",
-"creatorBuild": "19102",
+"creatorBuild": "19127",
 "files": {
 	"\/archive-team_member.php": {
 		"fileType": 8192,
@@ -782,17 +782,6 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/lib\/js\/common_scripts.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/lib\/js\/common_scripts.js",
-		"outputAbbreviatedPath": "\/lib\/js\/min\/common_scripts-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
 	"\/lib\/js\/common_scripts.min.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -859,12 +848,56 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/lib\/js\/min\/common_scripts-min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/lib\/js\/min\/common_scripts-min.js",
+		"outputAbbreviatedPath": "\/lib\/js\/min\/min\/common_scripts-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/lib\/js\/min\/homepage-jquery-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/lib\/js\/min\/homepage-jquery-min.js",
+		"outputAbbreviatedPath": "\/lib\/js\/min\/min\/homepage-jquery-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/lib\/js\/min\/nav-scripts-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/lib\/js\/min\/nav-scripts-min.js",
+		"outputAbbreviatedPath": "\/lib\/js\/min\/min\/nav-scripts-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/lib\/js\/modernizr-custom.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/lib\/js\/modernizr-custom.js",
 		"outputAbbreviatedPath": "\/lib\/js\/min\/modernizr-custom-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/lib\/js\/nav-scripts.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/lib\/js\/nav-scripts.js",
+		"outputAbbreviatedPath": "\/lib\/js\/min\/nav-scripts-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -1024,6 +1057,26 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/lib\/less\/responsive-main.less",
 		"outputAbbreviatedPath": "\/lib\/css\/responsive-main.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"relativeURLS": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"strictImports": 0,
+		"strictMath": 0,
+		"strictUnits": 0
+		},
+	"\/lib\/less\/responsive-nav.less": {
+		"allowInsecureImports": 0,
+		"createSourceMap": 0,
+		"disableJavascript": 0,
+		"fileType": 1,
+		"ieCompatibility": 1,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/lib\/less\/responsive-nav.less",
+		"outputAbbreviatedPath": "\/lib\/css\/responsive-nav.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
@@ -1437,7 +1490,7 @@
 	},
 "hooks": [
 	],
-"lastSavedByUser": "Catherine OBrien",
+"lastSavedByUser": "Catherine M OBrien",
 "manualImportLinks": {
 	},
 "projectAttributes": {
